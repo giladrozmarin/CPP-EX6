@@ -18,4 +18,4 @@ exceptions.o: exceptions.cpp
 
 		
 Clean:
-		rm *.o a.out
+		rm *.o 
