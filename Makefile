@@ -1,21 +1,19 @@
-CCX=g++ -std=c++11
 
+CXX=g++
+CXXFLAGS=-std=c++17 -Wall -Werror -Wvla
 
 all: Board.o Point.o newChar.o exceptions.o
-		$(CCX) main.cpp *.o
-		
+
 Board.o: Board.cpp Board.h
-		$(CCX) -c Board.cpp
-		
-Point.o: Point.cpp Point.h
-		$(CCX) -c Point.cpp
-		
-newChar.o: newChar.cpp newChar.h
-		$(CCX) -c newChar.cpp
+	$(CXX) $(CXXFLAGS) -c Board.cpp -o Board.o
 
-exceptions.o: exceptions.cpp
-		$(CCX) -c exceptions.cpp
+exceptions.o: exceptions.cpp exceptions.h
+	$(CXX) $(CXXFLAGS) -c exceptions.cpp -o exceptions.o
 
-		
-Clean:
-		rm *.o 
+Point.o:  Point.cpp Point.h
+	$(CXX) $(CXXFLAGS) -c Point.cpp -o Point.o
+
+newChar.o:  newChar.cpp newChar.h
+	$(CXX) $(CXXFLAGS) -c Cell.cpp -o Cell.o
+clean:
+	rm *.o 
