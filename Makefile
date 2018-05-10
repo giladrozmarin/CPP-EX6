@@ -14,6 +14,6 @@ Point.o:  Point.cpp Point.h
 	$(CXX) $(CXXFLAGS) -c Point.cpp -o Point.o
 
 newChar.o:  newChar.cpp newChar.h
-	$(CXX) $(CXXFLAGS) -c Cell.cpp -o Cell.o
+	$(CXX) $(CXXFLAGS) -c newChar.cpp -o newChar.o
 clean:
 	rm *.o 
