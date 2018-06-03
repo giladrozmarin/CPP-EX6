@@ -19,5 +19,9 @@ class newChar{
         operator char() const;
 
         
+        char getChar() const{
+	       return c;
+	}
+        
 };
 
