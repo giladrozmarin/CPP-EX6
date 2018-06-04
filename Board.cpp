@@ -90,9 +90,10 @@ const string Board :: draw(int n){
     int num_pic = 1;
     const int dimx = n, dimy = n;
     unsigned int vertex=0;
-     int width = cell / 5;
+   
     int red_board, green_board, blue_board;
     int cell = n / Size ; 
+     int width = cell / 5;
     string filename = "Gamepic"+to_string(num_pic)+".ppm";
     RGB image[dimx*dimy];
     
