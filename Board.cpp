@@ -109,10 +109,11 @@ const string Board :: draw(int n){
     //bounds
     for (int i = 0; i <dimx; ++i) {//row
         for (int j = 0; j < dimx; ++j) {//column
-            if(i%(dimx /Size) == 0 || j%(dimx /Size) == 0  || i%(dimx-5/Size) == 0|| j%(dimx-5/Size) == 0) {
-                image[dimx*i + j].red = 0;
-                image[dimx*i + j].blue = 0;
-                image[dimx*i + j].green = 0;
+            if( j%(dimx /Size) == 0 || %(dimx /Size) == 0  || j%(dimx-5/Size) == 0 || i%(dimx-5/Size) == 0) {
+                vertex= dimx*j+i;
+                image[vertex].red = 0;
+                image[vertex].blue = 0;
+                image[vertex].green = 0;
             }
         }
     }
@@ -125,9 +126,10 @@ const string Board :: draw(int n){
 
             for (int k = i*cell+width; k < i*cell+cell-width; ++k) {
                 for (int y = j*cell+width; y < j*cell+cell-width; ++y) {
-                    image[dimx*j+i].red = red_board;
-                    image[dimx*j+i].blue = blue_board;
-                    image[dimx*j+i].green = green_board; 
+                    vertex=dimx*j+i;
+                    image[vertex].red = red_board;
+                    image[vertex].blue = blue_board;
+                    image[vertex].green = green_board; 
                 }
             }
             //for "X"
@@ -138,33 +140,34 @@ const string Board :: draw(int n){
                 int thickLine = 0;
                 
                 for (int p = i*cell+width; p < i*cell+cell-width; ++p) {
-                    //left diagonal
+                 
+                    vertex=dimx*p+Left+q + thickLine;
                     while(thickLine != 10){
-                    image[dimx*p+Left+q + thickLine].red = (23);
+                    image[vertex].red = (23);
                     thickLine++;
                     }
                     thickLine = 0;
                     while(thickLine != 10){
-                    image[dimx*p+Left+q + thickLine].green = (150);
+                    image[vertex].green = (150);
                     thickLine++;
                     }
                     while(thickLine != 10){
-                    image[dimx*p+Left+q + thickLine].blue = (45);
+                    image[vertex].blue = (45);
                     thickLine++;
                     }
-                    
+                    vertex=dimx*p+Right-q  + thickLine;
                     //right diagonal
                     while(thickLine != 10){
-                    image[dimx*p+Right-q  + thickLine].red = (23);
+                    image[vertex].red = (23);
                     thickLine++;
                     }
                     thickLine = 0;
                     while(thickLine != 10){
-                    image[dimx*p+Right-q + thickLine].green = (150);
+                    image[vertex].green = (150);
                     thickLine++;
                     }
                     while(thickLine != 10){
-                    image[dimx*p+Right-q + thickLine].blue = (45);
+                    image[vertex].blue = (45);
                     thickLine++;
                     }
                     q++;
@@ -175,18 +178,21 @@ const string Board :: draw(int n){
             //  'O'
             if (cur == 'O'){
                 
-                double r = (cell/2-2*width)+width;
-                double xMid = (j*cell+width)/2 + (j*cell+cell-width)/2;
-                double yMid = (i*cell+width)/2 + (i*cell+cell-width)/2;
+               double yMid = (i*cell+width)/2 + (i*cell+cell-width)/2;
+               double xMid = (j*cell+width)/2 + (j*cell+cell-width)/2;
+               double r = (cell/2-2*width)+width;
+               
                 for (int p = i*cell+width; p < i*cell+cell-width; ++p) {
                     for (int l = j*cell+width; l < j*cell+cell-width; ++l) {
                         double d = pow(xMid-l,2) + pow(yMid-p,2);
-                        d = sqrt(d);
                         d = abs(d-r);
+                        d = sqrt(d);
+                   
                         if(d < 3){
-                            image[dimx*p+l].red = (221);
-                            image[dimx*p+l].green = (10);
-                            image[dimx*p+l].blue = (50);
+                            vertex=dimx*p+l;
+                            image[vertex].red = (221);
+                            image[vertex].green = (10);
+                            image[vertex].blue = (50);
                         }
                     }
                 }
@@ -199,7 +205,7 @@ const string Board :: draw(int n){
 ///image processing///
     while(isExists(filename)) {
         ++num_pic;
-        filename = "pic" + to_string(num_pic) + ".ppm";
+        filename = "Gamepic" + to_string(num_pic) + ".ppm";
     }
     ofstream imageFile(filename, ios::out | ios::binary);
     imageFile << "P6" << endl << dimx << " " << dimy << endl << 255 << endl;
