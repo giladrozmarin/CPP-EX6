@@ -109,7 +109,7 @@ const string Board :: draw(int n){
     //bounds
     for (int i = 0; i <dimx; ++i) {//row
         for (int j = 0; j < dimx; ++j) {//column
-            if( j%(dimx /Size) == 0 || %(dimx /Size) == 0  || j%(dimx-5/Size) == 0 || i%(dimx-5/Size) == 0) {
+                       if(i%(dimx /Size) == 0 || j%(dimx /Size) == 0  || i%(dimx-5/Size) == 0|| j%(dimx-5/Size) == 0) {
                 vertex= dimx*j+i;
                 image[vertex].red = 0;
                 image[vertex].blue = 0;
