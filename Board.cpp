@@ -98,9 +98,9 @@ const string Board :: draw(int n){
     //backGround of the board
     for (int j = 0; j < dimy; ++j)  {  // row
         for (int i = 0; i < dimx; ++i) { // column
-            image[dimx*j+i].red = (246);
-            image[dimx*j+i].green = (233);
-            image[dimx*j+i].blue = (197);
+            image[dimx*j+i].red = (100);
+            image[dimx*j+i].green = (100);
+            image[dimx*j+i].blue = (100);
         }
     }
     //bounds
@@ -132,21 +132,47 @@ const string Board :: draw(int n){
                 int Right = j*cell+cell-width-1;
                 int Left = j*cell+width;
                 int q = 0;
+                int thickLine = 0;
+                
                 for (int p = i*cell+width; p < i*cell+cell-width; ++p) {
                     //left diagonal
-                    image[dimx*p+Left+q].red = (120);
-                    image[dimx*p+Left+q].green = (140);
-                    image[dimx*p+Left+q].blue = (200);
+                    while(thickLine != 10){
+                    image[dimx*p+Left+q + thickLine].red = (23);
+                    thickLine++;
+                    }
+                    thickLine = 0;
+                    while(thickLine != 10){
+                    image[dimx*p+Left+q + thickLine].green = (150);
+                    thickLine++;
+                    }
+                    while(thickLine != 10){
+                    image[dimx*p+Left+q + thickLine].blue = (45);
+                    thickLine++;
+                    }
+                    
                     //right diagonal
-                    image[dimx*p+Right-q].red = (120);
-                    image[dimx*p+Right-q].green = (140);
-                    image[dimx*p+Right-q].blue = (200);
+                    while(thickLine != 10){
+                    image[dimx*p+Right-q  + thickLine].red = (23);
+                    thickLine++;
+                    }
+                    thickLine = 0;
+                    while(thickLine != 10){
+                    image[dimx*p+Right-q + thickLine].green = (150);
+                    thickLine++;
+                    }
+                    while(thickLine != 10){
+                    image[dimx*p+Right-q + thickLine].blue = (45);
+                    thickLine++;
+                    }
                     q++;
+                    
                 }
+          
             }
             // for 'O'
             if (cur == 'O'){
-                double r = cell/2-2*width;
+                
+                double r = (cell/2-2*width)+width;
                 double xMid = (j*cell+width)/2 + (j*cell+cell-width)/2;
                 double yMid = (i*cell+width)/2 + (i*cell+cell-width)/2;
                 for (int p = i*cell+width; p < i*cell+cell-width; ++p) {
@@ -154,10 +180,10 @@ const string Board :: draw(int n){
                         double d = pow(xMid-l,2) + pow(yMid-p,2);
                         d = sqrt(d);
                         d = abs(d-r);
-                        if(d < 10){
-                            image[dimx*p+l].red = (210);
-                            image[dimx*p+l].green = (11);
-                            image[dimx*p+l].blue = (141);
+                        if(d < 3){
+                            image[dimx*p+l].red = (221);
+                            image[dimx*p+l].green = (10);
+                            image[dimx*p+l].blue = (50);
                         }
                     }
                 }
@@ -194,11 +220,5 @@ ostream& operator<< (ostream& os, const Board& b){
     }
     return os;
 }
-
-
-
-
-
-
 
 
