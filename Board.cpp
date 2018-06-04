@@ -89,18 +89,20 @@ bool Board::isExists(string file) {
 const string Board :: draw(int n){  
     int num_pic = 1;
     const int dimx = n, dimy = n;
-    int cell = n / Size ; 
-    int width = cell / 5;
+    unsigned int vertex=0;
+     int width = cell / 5;
     int red_board, green_board, blue_board;
-    string filename = "pic"+to_string(num_pic)+".ppm";
+    int cell = n / Size ; 
+    string filename = "Gamepic"+to_string(num_pic)+".ppm";
     RGB image[dimx*dimy];
     
     //backGround of the board
     for (int j = 0; j < dimy; ++j)  {  // row
         for (int i = 0; i < dimx; ++i) { // column
-            image[dimx*j+i].red = (100);
-            image[dimx*j+i].green = (100);
-            image[dimx*j+i].blue = (100);
+         vertex = dimx*j+i;
+            image[vertex].red = (100);
+            image[vertex].green = (100);
+            image[vertex].blue = (100);
         }
     }
     //bounds
@@ -115,7 +117,7 @@ const string Board :: draw(int n){
     }
     
     
-    //paint X / O / . :
+       // X
     for (int i = 0; i < Size; ++i) {
         for (int j = 0; j < Size; ++j) {
             char cur = board[i][j].getChar();
@@ -169,7 +171,7 @@ const string Board :: draw(int n){
                 }
           
             }
-            // for 'O'
+            //  'O'
             if (cur == 'O'){
                 
                 double r = (cell/2-2*width)+width;
